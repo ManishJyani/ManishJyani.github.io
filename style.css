@@ -32,15 +32,20 @@ body{
 
 .myphoto{
     flex: 0;
-   
-    border-radius: 30px;
+   width: 400;
+
 }  
+
+#manishphoto{
+    border-radius: 3%;
+}
 
 .mytext2{
     margin-right: 20px;
     margin-left: 40px;
     position: absolute;
     top:20%;
+
     
 } 
 
