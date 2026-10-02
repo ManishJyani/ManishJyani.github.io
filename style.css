@@ -1,7 +1,7 @@
 
-/* ------------------------------
-   Basic Reset
------------------------------- */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -15,36 +15,38 @@ html {
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-    background: #f5f1e8;
     color: #24221f;
     line-height: 1.6;
+    overflow-x: hidden;
 
-    /* Paper-like texture */
+    background-color: #f4efe5;
+
+    /* subtle paper texture */
     background-image:
         radial-gradient(
-            rgba(60, 50, 40, 0.045) 0.7px,
+            rgba(70, 55, 40, 0.055) 0.7px,
             transparent 0.7px
         );
-    background-size: 7px 7px;
 
-    overflow-x: hidden;
+    background-size: 7px 7px;
 }
 
 
-/* ------------------------------
-   Navigation
------------------------------- */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 header {
     width: 100%;
     position: relative;
-    z-index: 10;
+    z-index: 20;
 }
 
 .navbar {
     max-width: 1200px;
     margin: auto;
-    padding: 24px;
+
+    padding: 22px 24px;
 
     display: flex;
     justify-content: space-between;
@@ -54,6 +56,7 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
+
     color: #24221f;
     text-decoration: none;
 
@@ -66,22 +69,23 @@ header {
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 28px;
 }
 
 .nav-links a {
     color: #4c4944;
     text-decoration: none;
+
     font-size: 0.95rem;
 
     position: relative;
-    transition: color 0.3s ease;
 }
 
 .nav-links a::after {
     content: "";
 
     position: absolute;
+
     left: 0;
     bottom: -5px;
 
@@ -93,32 +97,31 @@ header {
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: #000;
-}
-
 .nav-links a:hover::after {
     width: 100%;
 }
 
 
-/* ------------------------------
-   Hero
------------------------------- */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
     max-width: 1000px;
+
     margin: auto;
 
-    padding: 100px 24px 140px;
+    padding: 90px 24px 120px;
 
     text-align: center;
 
     position: relative;
+
+    isolation: isolate;
 }
 
 
-/* Main soft background */
+/* Main organic shape */
 
 .hero::before {
     content: "";
@@ -133,14 +136,14 @@ header {
 
     transform: translate(-50%, -50%);
 
-    background: #e7dfcf;
+    background: #e5dccb;
 
     border-radius:
         48% 52% 60% 40%
         /
         45% 40% 60% 55%;
 
-    opacity: 0.65;
+    opacity: 0.75;
 
     z-index: -3;
 
@@ -168,30 +171,112 @@ header {
 
         transform:
             translate(-50%, -50%)
-            rotate(8deg);
+            rotate(7deg);
     }
 }
 
 
-/* ------------------------------
-   Cute Medical Doodles
------------------------------- */
+/* =========================================================
+   MEDICAL DOODLES
+========================================================= */
 
-/* Stethoscope */
+/*
+   These are deliberately created with CSS/text rather
+   than emoji, so they render consistently on phones.
+*/
 
-.hero::after {
-    content: "♧";
+
+/* Medical cross */
+
+.hero h1::before {
+    content: "✚";
 
     position: absolute;
 
-    left: 12%;
-    top: 20%;
+    left: 13%;
+    top: 18%;
 
     font-family: Arial, sans-serif;
 
-    font-size: 8rem;
+    font-size: 3.5rem;
 
-    color: #b7aaa0;
+    color: #9d8279;
+
+    opacity: 0.22;
+
+    transform: rotate(-12deg);
+
+    z-index: -1;
+
+    animation: floatCross 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatCross {
+
+    from {
+        transform: translateY(0) rotate(-12deg);
+    }
+
+    to {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+
+/* Heart */
+
+.hero h1::after {
+    content: "♡";
+
+    position: absolute;
+
+    right: 12%;
+    bottom: 17%;
+
+    font-family: Georgia, serif;
+
+    font-size: 5rem;
+
+    color: #a77f7b;
+
+    opacity: 0.20;
+
+    transform: rotate(12deg);
+
+    z-index: -1;
+
+    animation: floatHeart 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatHeart {
+
+    from {
+        transform: translateY(0) rotate(12deg);
+    }
+
+    to {
+        transform: translateY(-12px) rotate(-5deg);
+    }
+}
+
+
+/* Stethoscope-like curved decoration */
+
+.hero::after {
+    content: "◡";
+
+    position: absolute;
+
+    left: 8%;
+    bottom: 17%;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10rem;
+
+    font-weight: 100;
+
+    color: #8c8178;
 
     opacity: 0.13;
 
@@ -199,95 +284,33 @@ header {
 
     z-index: -2;
 
-    animation: floatMedical 6s ease-in-out infinite;
+    animation: floatStethoscope 8s ease-in-out infinite alternate;
 }
 
+@keyframes floatStethoscope {
 
-/* Floating medical symbols */
-
-.hero {
-    isolation: isolate;
-}
-
-.hero h1::before {
-    content: "✚";
-
-    position: absolute;
-
-    left: 15%;
-    top: 18%;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 3rem;
-
-    color: #a99b90;
-
-    opacity: 0.15;
-
-    transform: rotate(-10deg);
-
-    animation: floatMedical 5s ease-in-out infinite alternate;
-}
-
-.hero h1::after {
-    content: "♡";
-
-    position: absolute;
-
-    right: 14%;
-    bottom: 22%;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 4rem;
-
-    color: #a99b90;
-
-    opacity: 0.14;
-
-    transform: rotate(12deg);
-
-    animation: floatMedical 7s ease-in-out infinite alternate;
-}
-
-@keyframes floatMedical {
-
-    0% {
-        transform: translateY(0) rotate(-8deg);
+    from {
+        transform:
+            translateY(0)
+            rotate(-25deg);
     }
 
-    100% {
-        transform: translateY(-12px) rotate(5deg);
+    to {
+        transform:
+            translateY(-12px)
+            rotate(-15deg);
     }
 }
 
 
-/* Small medical cross */
-
-.hero-text::after {
-    content: "＋  🩺  💊";
-
-    display: block;
-
-    margin-top: 25px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 1.4rem;
-
-    letter-spacing: 10px;
-
-    opacity: 0.20;
-
-    transform: rotate(-2deg);
-}
-
+/* =========================================================
+   HERO TEXT
+========================================================= */
 
 .eyebrow {
     font-family: Arial, sans-serif;
 
-    font-size: 0.75rem;
+    font-size: 0.72rem;
 
     letter-spacing: 2px;
 
@@ -321,9 +344,30 @@ header {
 }
 
 
-/* ------------------------------
-   Sections
------------------------------- */
+/* Small medical decoration below text */
+
+.hero-text::after {
+    content: "✚  ·  ♡  ·  ✚";
+
+    display: block;
+
+    margin-top: 28px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1rem;
+
+    letter-spacing: 8px;
+
+    color: #9d8980;
+
+    opacity: 0.40;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .gallery-section,
 .about-section {
@@ -362,9 +406,9 @@ header {
 }
 
 
-/* ------------------------------
-   Gallery
------------------------------- */
+/* =========================================================
+   GALLERY
+========================================================= */
 
 .gallery {
     display: grid;
@@ -377,7 +421,7 @@ header {
 }
 
 
-/* Artwork frame */
+/* Artwork card */
 
 .artwork {
     position: relative;
@@ -388,10 +432,10 @@ header {
 
     padding: 12px;
 
-    border: 1px solid #c9c0b2;
+    border: 1px solid #c5bbaa;
 
     box-shadow:
-        0 4px 12px rgba(50, 40, 30, 0.10);
+        0 5px 15px rgba(45, 35, 25, 0.12);
 
     transition:
         transform 0.45s ease,
@@ -399,7 +443,7 @@ header {
 }
 
 
-/* Inner border */
+/* Inner frame */
 
 .artwork::before {
     content: "";
@@ -408,21 +452,18 @@ header {
 
     inset: 5px;
 
-    border: 1px solid rgba(100, 90, 75, 0.22);
+    border: 1px solid rgba(90, 75, 60, 0.25);
 
     pointer-events: none;
 
-    z-index: 2;
+    z-index: 3;
 }
 
 
-/* ------------------------------
-   Image — Sharper / More Contrast
------------------------------- */
+/* Image */
 
 .artwork img {
     width: 100%;
-
     height: auto;
 
     display: block;
@@ -432,13 +473,12 @@ header {
     z-index: 1;
 
     /*
-       Slight contrast and saturation boost.
-       Keeps the artwork natural but makes
-       details stand out.
+       Stronger contrast for artwork.
     */
+
     filter:
-        contrast(1.10)
-        saturate(1.06);
+        contrast(1.12)
+        saturate(1.07);
 
     transition:
         transform 0.5s ease,
@@ -446,20 +486,7 @@ header {
 }
 
 
-/* Stronger image on hover */
-
-.artwork:hover img {
-    transform: scale(1.025);
-
-    filter:
-        contrast(1.16)
-        saturate(1.10);
-}
-
-
-/* ------------------------------
-   Organic Artwork Layout
------------------------------- */
+/* Slight organic rotation */
 
 .artwork:nth-child(2n) {
     transform: rotate(0.7deg);
@@ -474,22 +501,33 @@ header {
 }
 
 
-/* Hover */
+/* Desktop hover */
 
-.artwork:hover {
-    transform:
-        translateY(-10px)
-        rotate(0deg)
-        scale(1.015);
+@media (hover: hover) {
 
-    box-shadow:
-        0 18px 35px rgba(50, 40, 30, 0.17);
+    .artwork:hover {
+        transform:
+            translateY(-10px)
+            rotate(0deg)
+            scale(1.015);
+
+        box-shadow:
+            0 20px 38px rgba(45, 35, 25, 0.18);
+    }
+
+    .artwork:hover img {
+        transform: scale(1.025);
+
+        filter:
+            contrast(1.18)
+            saturate(1.10);
+    }
 }
 
 
-/* ------------------------------
-   Gallery Decorations
------------------------------- */
+/* =========================================================
+   GALLERY DECORATIONS
+========================================================= */
 
 .gallery-section {
     position: relative;
@@ -506,11 +544,11 @@ header {
     right: -100px;
     top: 180px;
 
-    border: 1px solid #d6cec0;
+    border: 1px solid #d2c7b8;
 
     border-radius: 50%;
 
-    opacity: 0.5;
+    opacity: 0.55;
 
     z-index: -1;
 }
@@ -526,20 +564,20 @@ header {
     left: -30px;
     bottom: 200px;
 
-    background: #e5ddd0;
+    background: #e2d8c9;
 
     border-radius:
         60% 40% 50% 50%;
 
-    opacity: 0.5;
+    opacity: 0.55;
 
     z-index: -1;
 }
 
 
-/* ------------------------------
-   About
------------------------------- */
+/* =========================================================
+   ABOUT
+========================================================= */
 
 .about-section {
     max-width: 900px;
@@ -558,9 +596,6 @@ header {
 
     margin-bottom: 20px;
 }
-
-
-/* Decorative quote */
 
 .about-section::before {
     content: "“";
@@ -582,9 +617,9 @@ header {
 }
 
 
-/* ------------------------------
-   Footer
------------------------------- */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
     text-align: center;
@@ -603,81 +638,328 @@ footer {
 }
 
 
-/* ------------------------------
-   Mobile
------------------------------- */
+/* =========================================================
+   MOBILE — PRIMARY DESIGN
+========================================================= */
 
 @media (max-width: 600px) {
 
+    /* ------------------------------
+       Navigation
+    ------------------------------ */
+
     .navbar {
-        padding: 20px;
+        padding: 20px 18px;
     }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 0.88rem;
+    }
+
+
+    /* ------------------------------
+       Hero
+    ------------------------------ */
 
     .hero {
-        padding: 70px 20px 100px;
+        padding: 75px 20px 90px;
+
+        /*
+           Important:
+           keep the hero decorations inside
+           the phone viewport.
+        */
+        min-height: 520px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+
+
+    /* Smaller organic background */
 
     .hero::before {
-        width: 280px;
-        height: 280px;
+        width: 310px;
+        height: 310px;
+
+        top: 48%;
+
+        opacity: 0.80;
     }
 
-    .hero h1 {
-        letter-spacing: -2px;
-    }
+
+    /* Medical cross */
 
     .hero h1::before {
-        left: 5%;
+        left: 3%;
         top: 10%;
-        font-size: 2rem;
+
+        font-size: 2.7rem;
+
+        opacity: 0.27;
     }
+
+
+    /* Heart */
 
     .hero h1::after {
-        right: 5%;
-        bottom: 15%;
-        font-size: 2.5rem;
+        right: 3%;
+        bottom: 8%;
+
+        font-size: 3.8rem;
+
+        opacity: 0.25;
     }
+
+
+    /* Stethoscope */
 
     .hero::after {
-        left: 3%;
-        top: 25%;
-        font-size: 5rem;
+        left: -5%;
+        bottom: 13%;
+
+        font-size: 7rem;
+
+        opacity: 0.16;
     }
 
-    .hero-text {
-        font-size: 1.05rem;
+
+    .eyebrow {
+        font-size: 0.67rem;
+
+        letter-spacing: 1.8px;
+
+        margin-bottom: 14px;
     }
+
+
+    .hero h1 {
+        font-size: clamp(4.5rem, 22vw, 7rem);
+
+        letter-spacing: -3px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .hero-text {
+        font-size: 1.03rem;
+
+        max-width: 340px;
+    }
+
+
+    .hero-text::after {
+        margin-top: 25px;
+
+        font-size: 0.85rem;
+
+        letter-spacing: 6px;
+
+        opacity: 0.45;
+    }
+
+
+    /* ------------------------------
+       Sections
+    ------------------------------ */
 
     .gallery-section,
     .about-section {
-        padding: 60px 20px;
+        padding: 60px 18px;
     }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 2.1rem;
+    }
+
+
+    /* ------------------------------
+       Gallery
+    ------------------------------ */
 
     .gallery {
         grid-template-columns: 1fr;
 
-        gap: 28px;
+        gap: 32px;
 
-        padding: 10px 5px;
+        /*
+           Gives the cards some breathing room
+           so the rotation doesn't touch edges.
+        */
+        padding: 8px 7px;
     }
+
+
+    /* Stronger mobile artwork frame */
 
     .artwork {
-        padding: 9px;
+        padding: 10px;
+
+        border: 1px solid #bfb4a4;
+
+        background: #f0ebe1;
+
+        box-shadow:
+            0 6px 18px rgba(45, 35, 25, 0.14);
+
+        /*
+           Disable rotation initially on phone.
+           It looks cleaner with a single-column
+           gallery.
+        */
+        transform: none !important;
     }
 
-    .section-heading h2 {
-        font-size: 2rem;
+
+    /* Inner frame */
+
+    .artwork::before {
+        inset: 5px;
+
+        border-color: rgba(90, 75, 60, 0.30);
     }
+
+
+    /* Sharper image */
+
+    .artwork img {
+        filter:
+            contrast(1.14)
+            saturate(1.08);
+    }
+
+
+    /*
+       Give every second artwork a tiny
+       variation without rotating the card.
+    */
+
+    .artwork:nth-child(2n) {
+        margin-left: 3px;
+        margin-right: -3px;
+    }
+
+    .artwork:nth-child(3n) {
+        margin-left: -2px;
+        margin-right: 2px;
+    }
+
+
+    /* ------------------------------
+       Gallery decorations
+    ------------------------------ */
+
+    .gallery-section::before {
+        width: 130px;
+        height: 130px;
+
+        right: -65px;
+
+        top: 170px;
+
+        opacity: 0.35;
+    }
+
+    .gallery-section::after {
+        width: 70px;
+        height: 70px;
+
+        left: -25px;
+
+        bottom: 160px;
+
+        opacity: 0.40;
+    }
+
+
+    /* ------------------------------
+       About
+    ------------------------------ */
 
     .about-content p {
         font-size: 1rem;
+
+        line-height: 1.7;
     }
 
     .about-section::before {
         font-size: 6rem;
 
-        right: 10px;
+        right: 5px;
 
-        top: 70px;
+        top: 60px;
+
+        opacity: 0.8;
+    }
+
+
+    /* ------------------------------
+       Footer
+    ------------------------------ */
+
+    footer {
+        padding: 55px 20px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .navbar {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        min-height: 480px;
+    }
+
+    .hero::before {
+        width: 270px;
+        height: 270px;
+    }
+
+    .hero h1 {
+        font-size: 4.3rem;
+    }
+
+    .hero h1::before {
+        left: 0;
+    }
+
+    .hero h1::after {
+        right: 0;
+    }
+
+    .gallery-section,
+    .about-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .gallery {
+        padding-left: 3px;
+        padding-right: 3px;
     }
 }
